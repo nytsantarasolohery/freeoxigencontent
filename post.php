@@ -1,26 +1,20 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Open the file "usernames.txt" in append mode for writing
-    $handle = fopen("usernames.txt", "a");
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        // You can retrieve more input variables in a similar manner
 
-    // Iterate through all the POST variables sent from the form
-    foreach ($_POST as $variable => $value) {
-        // Write the variable name to the file
-        fwrite($handle, $variable);
-        // Write "=" to the file
-        fwrite($handle, "=");
-        // Write the value of the variable to the file
-        fwrite($handle, $value);
-        // Write newline characters to separate entries
-        fwrite($handle, "\n");
+        // Compose the email message
+        $subject = "Form Submission";
+        $message = "Name: $name\n";
+        $message .= "Email: $email\n";
+        // Add more input variables to the message
+
+        // Send the email
+        $to = "nytsantarasolohery@gmail.com"; // Replace with the recipient's email
+        $headers = "From: nt.rasolohery@gmail.com"; // Replace with the sender's email
+        mail($to, $subject, $message, $headers);
+
+        echo "Form submitted successfully.";
     }
-
-    // Close the file
-    fclose($handle);
-
-    // Redirect the user back to the form
-    header('Location: index.html');
-} else {
-    echo "Invalid request.";
-}
 ?>
