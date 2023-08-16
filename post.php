@@ -1,6 +1,6 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_POST["name"];
+        $name = $_POST["username"];
         $email = $_POST["email"];
         // You can retrieve more input variables in a similar manner
 
